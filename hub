@@ -1,5 +1,4 @@
 -----------------------------------Locals-----------------------------------
---yay
 local placeId = game.PlaceId 
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(placeId)
 
