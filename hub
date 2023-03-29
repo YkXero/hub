@@ -38,11 +38,9 @@ request(abcdef)
 
 local PlaceId = game.PlaceId
 local games = {
-	[4468711919] = "https://raw.githubusercontent.com/YkXero/Xero-HUB/main/SG%20GUI%20v2%20(Speedrun)",
-	[9586878618] = "https://raw.githubusercontent.com/YkXero/Xero-HUB/main/Inazuma%20Rebirth%20GUI."
+	[4468711919] = "https://raw.githubusercontent.com/0fizzy/hub/main/Sg%20Gui%20v2",
+	[9586878618] = "https://raw.githubusercontent.com/0fizzy/hub/main/IR%20Gui"
 }
-
-
 
 if games[PlaceId] then
 	print(Asset.Name.." Loaded")
