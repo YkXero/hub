@@ -37,8 +37,13 @@ request(abcdef)
 
 local PlaceId = game.PlaceId
 local games = {
+	--SG
 	[4468711919] = "https://raw.githubusercontent.com/0fizzy/hub/main/Sg%20Gui%20v2",
-	[9586878618] = "https://raw.githubusercontent.com/0fizzy/hub/main/IR%20Gui"
+	[6299366549] = "https://raw.githubusercontent.com/0fizzy/hub/main/Sg%20Gui%20v2",
+	--IR
+	[9586878618] = "https://raw.githubusercontent.com/0fizzy/hub/main/IR%20Gui",
+	[9586935578] = "https://raw.githubusercontent.com/0fizzy/hub/main/IR%20Gui",
+	[10896820425] = "https://raw.githubusercontent.com/0fizzy/hub/main/IR%20Gui"
 }
 
 if games[PlaceId] then
