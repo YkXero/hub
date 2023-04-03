@@ -214,17 +214,39 @@ AutoFarm:AddDropdown({ --Dinero y exp
 	Options = {"Active", "Stop"},
 	Callback = function(FarmMoneyEXP)
 		if FarmMoneyEXP == "Active" then
-			_G.FarmMoneyEXP = true
-			if _G.FarmMoneyEXP == true then
-				while true do
-					local teleport_table = {
-						location1 = Vector3.new(797, 286, -265), 
-						location2 = Vector3.new(797, 286, -265)  
+			getgenv().Farm = true --Desactivate to stop
+if getgenv().Farm == true then
+
+--Locals
+local SBPart = Instance.new("Part", workspace)
+local lp = game:GetService("Players").LocalPlayer
+local PutBox = game:GetService("Workspace").PUTTINGBoxPart
+local GetBox = game:GetService("Workspace").GettingBoxPart
+
+--Part
+SBPart.Position = Vector3.new(99998, 9988, 99999)
+SBPart.Anchored = true
+SBPart.Size = Vector3.new(9999, 10 , 9999)
+SBPart.Color = Color3.fromRGB(255, 255, 255)
+
+--Player
+lp.Character.HumanoidRootPart.CFrame = CFrame.new(99998, 10000, 99999)
+
+--BoxParts
+GetBox.Size = Vector3.new(700, 2200, 700)
+GetBox.Position = Vector3.new(100591, 10407, 99854)
+PutBox.Size = Vector3.new(700, 2200, 700)
+PutBox.Position = Vector3.new(99097, 10407, 99860)
+
+--Script
+while true do
+local teleport_table = {
+					location1 = Vector3.new(808, 286, -271.2), 
+					location2 = Vector3.new(808, 286, -271.2)  
 					}
 					local tween_s = game:GetService('TweenService')
-					local tweeninfo = TweenInfo.new(.4,Enum.EasingStyle.Linear)
+					local tweeninfo = TweenInfo.new(.01,Enum.EasingStyle.Linear)
 					local lp = game.Players.LocalPlayer
-
 					function bypass_teleport(v)
 						if lp.Character and 
 							lp.Character:FindFirstChild('HumanoidRootPart') then
@@ -235,45 +257,36 @@ AutoFarm:AddDropdown({ --Dinero y exp
 					end
 					bypass_teleport(teleport_table.location1)
 					bypass_teleport(teleport_table.location1)	
-					wait(1)
-					fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
-					task.wait(.2)
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-18578, 470, 442)
-					wait(12.5)
-					game:GetService("Players").LocalPlayer.PlayerGui.MoneyAndEXPQuest.MainFrame.Frame.Agree.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
-					wait(.2)
-					mouse1click()
-					task.wait(.1)
-					mouse1click()
-					task.wait(.1)
-					mouse1click()
-					task.wait(.1)
-					mouse1click()
-					wait()
-					local teleport_table = {
-						location1 = Vector3.new(-943, 257, 83), 
-						location2 = Vector3.new(-943, 257, 83)  
-					}
-					local tween_s = game:GetService('TweenService')
-					local tweeninfo = TweenInfo.new(.8,Enum.EasingStyle.Linear)
-					local lp = game.Players.LocalPlayer
-					bypass_teleport(teleport_table.location1)
-					bypass_teleport(teleport_table.location1)	
-					wait(1)
-					local teleport_table = {
-						location1 = Vector3.new(797, 286, -265), 
-						location2 = Vector3.new(797, 286, -265)  
-					}
-					bypass_teleport(teleport_table.location1)
-					bypass_teleport(teleport_table.location1)	
-					wait(.7)
-					if _G.FarmMoneyEXP == false then break
-					end
-				end
-			end
-		end    
+					wait(.1)
+fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
+task.wait(.1)
+fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
+task.wait(.1)
+fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
+task.wait()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(100562, 9998, 99877)
+wait(12.5)
+game:GetService("Players").LocalPlayer.PlayerGui.MoneyAndEXPQuest.MainFrame.Frame.Agree.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
+wait(.2)
+mouse1click()
+task.wait(.1)
+mouse1click()
+task.wait(.1)
+mouse1click()
+task.wait(.1)
+mouse1click()
+wait()
+lp.Character.HumanoidRootPart.CFrame = CFrame.new(100627, 9996, 99878)
+wait(1)
+lp.Character.HumanoidRootPart.CFrame = CFrame.new(99198, 9996, 99873)
+wait(1)
+if getgenv().Farm == false then break
+end
+end
+end
+end
 		if FarmMoneyEXP == "Stop" then
-			_G.FarmMoneyEXP = false
+			getgenv().Farm = false
 		end
 end})
 AutoFarm:AddDropdown({ --Speed
