@@ -1,6 +1,6 @@
 --Local Lib/Window
 local Library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = Library:MakeWindow({Name = "SG v2", HidePremium = false, SaveConfig = false	, ConfigFolder = "OrionTest", IntroText = "Xero SG GUI v2", IntroIcon = "http://www.roblox.com/asset/?id=3019710362"})
+local Window = Library:MakeWindow({Name = "SG v2", IntroEnabled = false, HidePremium = false, SaveConfig = false	, ConfigFolder = "OrionTest", IntroText = "Xero SG GUI v2", IntroIcon = "http://www.roblox.com/asset/?id=3019710362"})
 
 --Local Tabs
 local MapList = Window:MakeTab({
