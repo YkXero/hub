@@ -1,64 +1,34 @@
+--Lib/Tab
 
-
---Lib/Window
-
-local Library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = Library:MakeWindow({Name = "Xero IR GUI", IntroEnabled = false, HidePremium = false, SaveConfig = false	, ConfigFolder = "OrionTest", IntroText = "IR GUI", IntroIcon = "http://www.roblox.com/asset/?id=3019710362"})
-
---Tabs
-
-local MiscTab = Window:MakeTab({
-	Name = "General",
-	Icon = "http://www.roblox.com/asset/?id=10893855041",
-	PremiumOnly = false
-})
-local AutoFarmTab = Window:MakeTab({
-	Name = "Autofarm",
-	Icon = "http://www.roblox.com/asset/?id=10893855041",
-	PremiumOnly = false
-})
-local TeleportsTab = Window:MakeTab({
-	Name = "Teleports",
-	Icon = "http://www.roblox.com/asset/?id=10893855041",
-	PremiumOnly = false
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+local Tab = Lib.Load({
+	Title = "Xero IR GUI",
+	Style = 3,
+	SizeX = 500,
+	SizeY = 350,
+	Theme = "Light",
+	ColorOverrides = {
+		MainFrame = Color3.fromRGB(235,235,235)
+	}
 })
 
 --Sections
 
-local General = MiscTab:AddSection({
-	Name = "General"
+local GeneralSection = Tab.New({
+	Title = "General"
 })
-local AutoFarm = AutoFarmTab:AddSection({
-	Name = "AutoFarm"
+local AutofarmSection = Tab.New({
+	Title = "Autofarm"
 })
-local Teleports = TeleportsTab:AddSection({
-	Name = "Teleports"
+local TeleportSection = Tab.New({
+	Title = "Teleports"
 })
 
---General Section
+--General
 
-General:AddDropdown({ --Walkspeed
-	Name = "+ Walkspeed",
-	Default = "Disabled",
-	Options = {"Active", "Disabled"},
-	Callback = function(speed)
-		if speed == "Active" then
-			getgenv().WalkSpeed = true 
-			while WalkSpeed == true do
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * 2
-				wait()
-			end
-		end
-		if speed == "Disabled" then
-			getgenv().WalkSpeed = false
-		end
-	end  
-
-})
-General:AddButton({ --Volar
-	Name = "Fly (z)",
+local Fly = GeneralSection.Button({
+	Text = "Fly",
 	Callback = function()
-
 		local flycar = Instance.new("ScreenGui")
 		local veryepic = Instance.new("Frame")
 		local title = Instance.new("TextLabel")
@@ -174,39 +144,45 @@ General:AddButton({ --Volar
 		fly.MouseButton1Down:connect(function()
 			veryepic.Visible = false
 		end)
-	end
-})
-General:AddButton({ --Reset
-	Name = "Reset",
-	Callback = function()
-		game:GetService("Players").LocalPlayer.Character.Head:Destroy()
-	end
-})
-General:AddButton({ --Infinite hiss
-	Name = "Infinite hiss",
-	Callback = function()
-		while true do
-			game:GetService("Workspace").GenjiShimada67.TPGaining.Get:FireServer()
-			task.wait()
+	end,
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "vuela alto obinnaxs"
+			})
 		end
-	end
+	}
 })
-General:AddTextbox({ --Remove Tackle
-	Name = "Remove Tackle",
-	Default = game.Players.LocalPlayer.Name,
-	TextDisappear = false,
+local Reset = GeneralSection.Button({
+	Text = "Reset",
+	Callback = function()
+	game:GetService("Players").LocalPlayer.Character.Head:Destroy()
+	end,
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "te muereee :("
+			})
+		end
+	}
+})
+local DisableTackle = GeneralSection.TextField({
+	Text = "Disable Tackle",
 	Callback = function(User)
-		game:GetService("Workspace"):WaitForChild(User).OldTackle.Disabled = true
-	end	  
-})
+	game:GetService("Workspace"):WaitForChild(User).OldTackle.Disabled = true		
+end})
+local Charger = GeneralSection.TextField({
+	Text = "Charger",
+	Callback = function(Number)
+	game:GetService("Players").PolillaAtomica1.Data.Power.Value = Number		
+end})
 
 --AutoFarm
 
-AutoFarm:AddDropdown({ --Dinero y exp
-	Name = "MoneyEXP",
-	Options = {"Active", "Stop"},
-	Callback = function(FarmMoneyEXP)
-		if FarmMoneyEXP == "Active" then
+local IceCream = AutofarmSection.Dropdown({
+	Text = "IceCream",
+	Callback = function(Value)
+		if Value == "Start" then
 			getgenv().Farm = true --Desactivate to stop
 			if getgenv().Farm == true then
 
@@ -216,14 +192,19 @@ AutoFarm:AddDropdown({ --Dinero y exp
 				local PutBox = game:GetService("Workspace").PUTTINGBoxPart
 				local GetBox = game:GetService("Workspace").GettingBoxPart
 
-				--Part
+				--SBPart
 				SBPart.Position = Vector3.new(99998, 9988, 99999)
 				SBPart.Anchored = true
 				SBPart.Size = Vector3.new(9999, 10 , 9999)
 				SBPart.Color = Color3.fromRGB(255, 255, 255)
 
-				--Player
-				lp.Character.HumanoidRootPart.CFrame = CFrame.new(99998, 10000, 99999)
+				local UPart = Instance.new("Part", workspace)
+
+				--UPart
+				UPart.Position = Vector3.new(798, 277, -267)
+				UPart.Anchored = true
+				UPart.Size = Vector3.new(100, 1 , 100)
+				UPart.Color = Color3.fromRGB(255, 255, 255)
 
 				--BoxParts
 				GetBox.Size = Vector3.new(700, 2200, 700)
@@ -234,7 +215,7 @@ AutoFarm:AddDropdown({ --Dinero y exp
 				--Script
 				while true do
 					local teleport_table = {
-						location1 = Vector3.new(808, 286, -271.2), 
+						location1 = Vector3.new(798, 278, -267), 
 						location2 = Vector3.new(808, 286, -271.2)  
 					}
 					local tween_s = game:GetService('TweenService')
@@ -262,11 +243,33 @@ AutoFarm:AddDropdown({ --Dinero y exp
 					game:GetService("Players").LocalPlayer.PlayerGui.MoneyAndEXPQuest.MainFrame.Frame.Agree.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
 					wait(.2)
 					mouse1click()
-					task.wait(.1)
+					task.wait(.025)
 					mouse1click()
-					task.wait(.1)
+					task.wait(.025)
 					mouse1click()
-					task.wait(.1)
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
+					mouse1click()
+					task.wait(.025)
 					mouse1click()
 					wait()
 					lp.Character.HumanoidRootPart.CFrame = CFrame.new(100627, 9996, 99878)
@@ -278,15 +281,75 @@ AutoFarm:AddDropdown({ --Dinero y exp
 				end
 			end
 		end
-		if FarmMoneyEXP == "Stop" then
-			getgenv().Farm = false
+		if Value == "Stop" then
+		getgenv().Farm = false
 		end
-end})
-AutoFarm:AddDropdown({ --Speed
-	Name = "Speed",
-	Options = {"Start", "Running"},
-	Callback = function(FarmSpeed)
-		if FarmSpeed == "Start" then
+		if Value == "Destroy Van" then
+		game:GetService("Workspace").Map.Beach.IceCreamVan:Destroy()
+		end
+		if Value == "Destroy Beach" then
+			while task.wait(0.0001) do
+				game:GetService("Workspace").Map.Beach.Part:Destroy()
+			end				
+		end
+	end,
+	Options = {
+		"Start",
+		"Stop",
+		"Destroy Van",
+		"Destroy Beach"
+	},
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "Helado mision locura."
+			})
+		end
+	}
+})
+local i4v4Farm = AutofarmSection.Dropdown({
+	Text = "4v4 Farm",
+	Callback = function(Value)
+		if Value == "Join 4v4" then
+		game:GetService("TeleportService"):Teleport(9586935578, LocalPlayer)	
+		end	
+		if Value == "Start 4v4" then
+			_G.Farm4v4 = true
+			if _G.Farm4v4 == true then
+				while true do
+					game:GetService("Workspace"):WaitForChild("Ball")
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2, 273, -131)	
+					task.wait()
+					game:GetService("Players").LocalPlayer.Character.BlockAHeader.Header:FireServer()
+					task.wait(.1)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0, 273, 166)	
+					wait(1)
+					if _G.Farm4v4 == false then break
+					end	
+				end
+			end   
+		end
+		if Value == "Stop 4v4" then
+		_G.Farm4v4 = false
+		end
+	end,
+	Options = {
+		"Join 4v4",
+		"Start 4v4",
+		"Stop 4v4"
+	},
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "4v4 farmeo !!! op 100%%%%"
+			})
+		end
+	}
+})
+local Speed = AutofarmSection.Dropdown({
+	Text = "Speed",
+	Callback = function(Value)
+		if Value == "Start" then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-251, 239, 424)
 			task.wait(.1)
 			fireproximityprompt(game:GetService("Workspace").SpeedQuest.ProximityPrompt)
@@ -301,8 +364,8 @@ AutoFarm:AddDropdown({ --Speed
 			task.wait(.1)
 			mouse1click()
 			task.wait(.1)
-		end    
-		if FarmSpeed == "Running" then
+		end
+		if Value == "Running" then
 			local teleport_table = {
 				location1 = Vector3.new(-276, 240, 514), 
 				location2 = Vector3.new(-276, 240, 514)  
@@ -344,14 +407,25 @@ AutoFarm:AddDropdown({ --Speed
 				location1 = Vector3.new(-277, 240, 370)  
 			}
 			bypass_teleport(teleport_table.location1)
-			bypass_teleport(teleport_table.location1)
+			bypass_teleport(teleport_table.location1)	
 		end
-end})
-AutoFarm:AddDropdown({ --Dribble
-	Name = "Dribble",
-	Options = {"Start", "Stop"},
-	Callback = function(FarmDribble)
-		if FarmDribble == "Start" then
+	end,
+	Options = {
+		"Start",
+		"Running"
+	},
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "mira como me corro kachaummmm"
+			})
+		end
+	}
+})
+local Dribble = AutofarmSection.Dropdown({
+	Text = "Dribble",
+	Callback = function(Value)
+		if Value == "Start" then
 			_G.FarmDribble = true
 			if _G.FarmDribble == true then
 				while true do
@@ -399,15 +473,26 @@ AutoFarm:AddDropdown({ --Dribble
 				end
 			end
 		end
-		if FarmDribble == "Stop" then
-			_G.DribbleFarm = false
+		if Value == "Stop" then
+		_G.DribbleFarm = false
 		end
-end})
-AutoFarm:AddDropdown({ --Stamina
-	Name = "Stamina",
-	Options = {"Start", "Stop"},
-	Callback = function(FarmStamina)
-		if FarmStamina == "Start" then
+	end,
+	Options = {
+		"Start",
+		"Stop"
+	},
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "dribbleoooooooooooooooooooo"
+			})
+		end
+	}
+})
+local Stamina = AutofarmSection.Dropdown({
+	Text = "Stamina",
+	Callback = function(Value)
+		if Value == "Start" then
 			_G.FarmStamina = true
 			if _G.FarmStamina == true then
 				while true do
@@ -435,229 +520,67 @@ AutoFarm:AddDropdown({ --Stamina
 					end
 				end
 			end
-		end    
-		if FarmStamina == "Stop" then
+			if Value == "Stop" then
 			_G.FarmStamina = false
+			end
 		end
-end})
-AutoFarm:AddTextbox({ --Handles
-	Name = "Handles",
-	Default = game.Players.LocalPlayer.Name,
-	TextDisappear = false,
-	Callback = function(Name)
+	end,
+	Options = {
+		"Start",
+		"Stop",
+	},
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "mira como me aguanto que locro"
+			})
+		end
+	}
+})
+local Handles = AutofarmSection.TextField({
+	Text = "Handles",
+	Callback = function(User)
 		while true do
-			game:GetService("Players"):WaitForChild(Name):WaitForChild("PlayerGui"):WaitForChild("GetHandlesQuestStuff"):WaitForChild("whereblack"):WaitForChild("Green"):FireServer()
-			task.wait()
-		end
-	end	  
-})
-AutoFarm:AddDropdown({ --Automatches Farm
-	Name = "Automatches Farm (Red FW)",
-	Options = {"Join 4v4", "Start 4v4", "Stop 4v4", "Join 7v7", "Start 7v7"},
-	Callback = function(FarmAutoMatches)
-		if FarmAutoMatches == "Join 4v4" then
-			game:GetService("TeleportService"):Teleport(9586935578, LocalPlayer)
-		end	
-		if FarmAutoMatches == "Start 4v4" then
-			_G.Farm4v4 = true
-			if _G.Farm4v4 == true then
-				while true do
-					game:GetService("Workspace"):WaitForChild("Ball")
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2, 273, -131)	
-					task.wait()
-					game:GetService("Players").LocalPlayer.Character.BlockAHeader.Header:FireServer()
-					task.wait(.1)
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0, 273, 166)	
-					wait(1)
-					if _G.Farm4v4 == false then break
-					end	
-				end
-			end    
-		end
-		if FarmAutoMatches == "Stop 4v4" then
-			_G.Farm4v4 = false
-		end
-		if FarmAutoMatches == "Join 7v7" then
-			game:GetService("TeleportService"):Teleport(10896820425, LocalPlayer)
-		end
-		if FarmAutoMatches == "Start 7v7" then
-			_G.Farm7v7 = true
-			if _G.Farm7v7 == true then
-				while true do
-					local input = loadstring(game:HttpGet('https://pastebin.com/raw/dYzQv3d8'))()	
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1303, 310, -129)	
-					task.wait(.1)
-					input.press(Enum.KeyCode.Q)
-					task.wait(.1)
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1301, 310, 193)	
-					task.wait(.15)
-					mouse1press()
-					task.wait(.2)
-					mouse1release()
-					wait(9.3)
-					if _G.Farm7v7 == false then break
-					end	
-				end
-			end    
-		end
-		if FarmAutoMatches == "Stop 4v4" then
-			_G.Farm7v7 = false
+			game:GetService("Players"):WaitForChild(User):WaitForChild("PlayerGui"):WaitForChild("GetHandlesQuestStuff"):WaitForChild("whereblack"):WaitForChild("Green"):FireServer()
+			task.wait()		
 		end
 end})
 
---Teleports
+--Teleport
 
-Teleports:AddButton({ --Teleport power
-	Name = "Power",
+local Power = TeleportSection.Button({
+	Text = "Power",
 	Callback = function()
-		local teleport_table = {
-			location1 = Vector3.new(483, 707, 30), 
-			location2 = Vector3.new(483, 707, 30)  
-		}
-		local tween_s = game:GetService('TweenService')
-		local tweeninfo = TweenInfo.new(.6,Enum.EasingStyle.Linear)
-		local lp = game.Players.LocalPlayer
-
-		function bypass_teleport(v)
-			if lp.Character and 
-				lp.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = CFrame.new(v)
-				local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-				a:Play()
-			end
-		end
-		bypass_teleport(teleport_table.location1)
-		bypass_teleport(teleport_table.location1)	
-		task.wait(.7)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(483, 707, 30)
+		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").PowerQuest.ProximityPrompt)
-
-	end
-})
-Teleports:AddButton({ --Teleport handles
-	Name = "Handles",
+end})
+local Handles = TeleportSection.Button({
+	Text = "Handles",
 	Callback = function()
-		local teleport_table = {
-			location1 = Vector3.new(48, 240, -290), 
-			location2 = Vector3.new(48, 240, -290)  
-		}
-		local tween_s = game:GetService('TweenService')
-		local tweeninfo = TweenInfo.new(.6,Enum.EasingStyle.Linear)
-		local lp = game.Players.LocalPlayer
-
-		function bypass_teleport(v)
-			if lp.Character and 
-				lp.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = CFrame.new(v)
-				local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-				a:Play()
-			end
-		end
-		bypass_teleport(teleport_table.location1)
-		bypass_teleport(teleport_table.location1)	
-		task.wait(.7)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(48, 240, -290)
+		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").HandlesTraining.QuestButton.ProximityPrompt)
-	end
-})
-Teleports:AddButton({ --Teleport Prestige
-	Name = "Prestige",
+end})
+local Prestige = TeleportSection.Button({
+	Text = "Prestige",
 	Callback = function()
-		local teleport_table = {
-			location1 = Vector3.new(746, 376, -1042), 
-			location2 = Vector3.new(746, 376, -1042)  
-		}
-		local tween_s = game:GetService('TweenService')
-		local tweeninfo = TweenInfo.new(.6,Enum.EasingStyle.Linear)
-		local lp = game.Players.LocalPlayer
-
-		function bypass_teleport(v)
-			if lp.Character and 
-				lp.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = CFrame.new(v)
-				local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-				a:Play()
-			end
-		end
-		bypass_teleport(teleport_table.location1)
-		bypass_teleport(teleport_table.location1)	
-		task.wait(.7)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(746, 376, -1042)
+		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").PrestigeChat.ProximityPrompt)
-
-	end
-})
-Teleports:AddButton({ --Teleport Limit Breaker
-	Name = "Limit Breaker",
+end})
+local LimitBreaker = TeleportSection.Button({
+	Text = "LimitBreaker",
 	Callback = function()
-		local teleport_table = {
-			location1 = Vector3.new(-509, 242, -1161), 
-			location2 = Vector3.new(-509, 242, -1161)  
-		}
-		local tween_s = game:GetService('TweenService')
-		local tweeninfo = TweenInfo.new(.6,Enum.EasingStyle.Linear)
-		local lp = game.Players.LocalPlayer
-
-		function bypass_teleport(v)
-			if lp.Character and 
-				lp.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = CFrame.new(v)
-				local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-				a:Play()
-			end
-		end
-		bypass_teleport(teleport_table.location1)
-		bypass_teleport(teleport_table.location1)	
-		task.wait(.7)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-509, 242, -1161)
+		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").LimitBreakerChat.ProximityPrompt)
-	end
-})
-Teleports:AddButton({ --Vending Machine
-	Name = "Vending Machine",
+		
+end})
+local Hiss = TeleportSection.Button({
+	Text = "Hiss",
 	Callback = function()
-		local teleport_table = {
-			location1 = Vector3.new(-116, 226, -388), 
-			location2 = Vector3.new(-116, 226, -388)  
-		}
-		local tween_s = game:GetService('TweenService')
-		local tweeninfo = TweenInfo.new(.6,Enum.EasingStyle.Linear)
-		local lp = game.Players.LocalPlayer
-
-		function bypass_teleport(v)
-			if lp.Character and 
-				lp.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = CFrame.new(v)
-				local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-				a:Play()
-			end
-		end
-		bypass_teleport(teleport_table.location1)
-		bypass_teleport(teleport_table.location1)	
-		task.wait(.9)
-		fireproximityprompt(game:GetService("Workspace").VendingMachine.Drinking.ProximityPrompt)
-	end
-})
-Teleports:AddButton({ --Hiss
-	Name = "Hiss",
-	Callback = function()
-		local teleport_table = {
-			location1 = Vector3.new(-154, 239, 350), 
-			location2 = Vector3.new(-154, 239, 350)  
-		}
-		local tween_s = game:GetService('TweenService')
-		local tweeninfo = TweenInfo.new(.6,Enum.EasingStyle.Linear)
-		local lp = game.Players.LocalPlayer
-
-		function bypass_teleport(v)
-			if lp.Character and 
-				lp.Character:FindFirstChild('HumanoidRootPart') then
-				local cf = CFrame.new(v)
-				local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-				a:Play()
-			end
-		end
-		bypass_teleport(teleport_table.location1)
-		bypass_teleport(teleport_table.location1)	
-		task.wait(.9)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-154, 239, 350)
+		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").GetHissa.ProximityPrompt)
-	end
-})
-
-Library:Init()
+end})
