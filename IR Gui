@@ -1,3 +1,5 @@
+
+
 --Lib/Window
 
 local Library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
@@ -177,23 +179,7 @@ General:AddButton({ --Volar
 General:AddButton({ --Reset
 	Name = "Reset",
 	Callback = function()
-		game.Players.LocalPlayer.Character.Humanoid.Name = 1
-		local l = game.Players.LocalPlayer.Character["1"]:Clone()
-		l.Parent = game.Players.LocalPlayer.Character
-		l.Name = "Humanoid"
-		wait()
-		game.Players.LocalPlayer.Character["1"]:Destroy()
-		game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
-		game.Players.LocalPlayer.Character.Animate.Disabled = true
-		wait()
-		game.Players.LocalPlayer.Character.Animate.Disabled = false
-		game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
-		wait()
-		local prt = Instance.new("Model", workspace);
-		Instance.new("Part", prt).Name="Torso";
-		Instance.new("Part", prt).Name="Head";
-		Instance.new("Humanoid", prt).Name="Humanoid";
-		game.Players.LocalPlayer.Character=prt
+		game:GetService("Players").LocalPlayer.Character.Head:Destroy()
 	end
 })
 General:AddButton({ --Infinite hiss
@@ -205,7 +191,14 @@ General:AddButton({ --Infinite hiss
 		end
 	end
 })
-
+General:AddTextbox({ --Remove Tackle
+	Name = "Remove Tackle",
+	Default = game.Players.LocalPlayer.Name,
+	TextDisappear = false,
+	Callback = function(User)
+		game:GetService("Workspace"):WaitForChild(User).OldTackle.Disabled = true
+	end	  
+})
 
 --AutoFarm
 
@@ -215,34 +208,34 @@ AutoFarm:AddDropdown({ --Dinero y exp
 	Callback = function(FarmMoneyEXP)
 		if FarmMoneyEXP == "Active" then
 			getgenv().Farm = true --Desactivate to stop
-if getgenv().Farm == true then
+			if getgenv().Farm == true then
 
---Locals
-local SBPart = Instance.new("Part", workspace)
-local lp = game:GetService("Players").LocalPlayer
-local PutBox = game:GetService("Workspace").PUTTINGBoxPart
-local GetBox = game:GetService("Workspace").GettingBoxPart
+				--Locals
+				local SBPart = Instance.new("Part", workspace)
+				local lp = game:GetService("Players").LocalPlayer
+				local PutBox = game:GetService("Workspace").PUTTINGBoxPart
+				local GetBox = game:GetService("Workspace").GettingBoxPart
 
---Part
-SBPart.Position = Vector3.new(99998, 9988, 99999)
-SBPart.Anchored = true
-SBPart.Size = Vector3.new(9999, 10 , 9999)
-SBPart.Color = Color3.fromRGB(255, 255, 255)
+				--Part
+				SBPart.Position = Vector3.new(99998, 9988, 99999)
+				SBPart.Anchored = true
+				SBPart.Size = Vector3.new(9999, 10 , 9999)
+				SBPart.Color = Color3.fromRGB(255, 255, 255)
 
---Player
-lp.Character.HumanoidRootPart.CFrame = CFrame.new(99998, 10000, 99999)
+				--Player
+				lp.Character.HumanoidRootPart.CFrame = CFrame.new(99998, 10000, 99999)
 
---BoxParts
-GetBox.Size = Vector3.new(700, 2200, 700)
-GetBox.Position = Vector3.new(100591, 10407, 99854)
-PutBox.Size = Vector3.new(700, 2200, 700)
-PutBox.Position = Vector3.new(99097, 10407, 99860)
+				--BoxParts
+				GetBox.Size = Vector3.new(700, 2200, 700)
+				GetBox.Position = Vector3.new(100591, 10407, 99854)
+				PutBox.Size = Vector3.new(700, 2200, 700)
+				PutBox.Position = Vector3.new(99097, 10407, 99860)
 
---Script
-while true do
-local teleport_table = {
-					location1 = Vector3.new(808, 286, -271.2), 
-					location2 = Vector3.new(808, 286, -271.2)  
+				--Script
+				while true do
+					local teleport_table = {
+						location1 = Vector3.new(808, 286, -271.2), 
+						location2 = Vector3.new(808, 286, -271.2)  
 					}
 					local tween_s = game:GetService('TweenService')
 					local tweeninfo = TweenInfo.new(.01,Enum.EasingStyle.Linear)
@@ -258,33 +251,33 @@ local teleport_table = {
 					bypass_teleport(teleport_table.location1)
 					bypass_teleport(teleport_table.location1)	
 					wait(.1)
-fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
-task.wait(.1)
-fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
-task.wait(.1)
-fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
-task.wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(100562, 9998, 99877)
-wait(12.5)
-game:GetService("Players").LocalPlayer.PlayerGui.MoneyAndEXPQuest.MainFrame.Frame.Agree.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
-wait(.2)
-mouse1click()
-task.wait(.1)
-mouse1click()
-task.wait(.1)
-mouse1click()
-task.wait(.1)
-mouse1click()
-wait()
-lp.Character.HumanoidRootPart.CFrame = CFrame.new(100627, 9996, 99878)
-wait(1)
-lp.Character.HumanoidRootPart.CFrame = CFrame.new(99198, 9996, 99873)
-wait(1)
-if getgenv().Farm == false then break
-end
-end
-end
-end
+					fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
+					task.wait(.1)
+					fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
+					task.wait(.1)
+					fireproximityprompt(game:GetService("Workspace").IceCreamGuy.ExpMoneyQuest.ProximityPrompt)
+					task.wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(100562, 9998, 99877)
+					wait(12.5)
+					game:GetService("Players").LocalPlayer.PlayerGui.MoneyAndEXPQuest.MainFrame.Frame.Agree.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
+					wait(.2)
+					mouse1click()
+					task.wait(.1)
+					mouse1click()
+					task.wait(.1)
+					mouse1click()
+					task.wait(.1)
+					mouse1click()
+					wait()
+					lp.Character.HumanoidRootPart.CFrame = CFrame.new(100627, 9996, 99878)
+					wait(1)
+					lp.Character.HumanoidRootPart.CFrame = CFrame.new(99198, 9996, 99873)
+					wait(1)
+					if getgenv().Farm == false then break
+					end
+				end
+			end
+		end
 		if FarmMoneyEXP == "Stop" then
 			getgenv().Farm = false
 		end
@@ -444,14 +437,12 @@ AutoFarm:AddDropdown({ --Stamina
 			end
 		end    
 		if FarmStamina == "Stop" then
-			game.Players.LocalPlayer.Character.Tackle.Enabled = true
-			game:GetService("StarterPlayer").StarterCharacterScripts.Tackle.Enabled = true
 			_G.FarmStamina = false
 		end
 end})
 AutoFarm:AddTextbox({ --Handles
 	Name = "Handles",
-	Default = "Insert ur username here",
+	Default = game.Players.LocalPlayer.Name,
 	TextDisappear = false,
 	Callback = function(Name)
 		while true do
@@ -513,8 +504,6 @@ AutoFarm:AddDropdown({ --Automatches Farm
 			_G.Farm7v7 = false
 		end
 end})
-
-
 
 --Teleports
 
@@ -670,3 +659,5 @@ Teleports:AddButton({ --Hiss
 		fireproximityprompt(game:GetService("Workspace").GetHissa.ProximityPrompt)
 	end
 })
+
+Library:Init()
