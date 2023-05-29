@@ -23,7 +23,9 @@ local AutofarmSection = Tab.New({
 local TeleportSection = Tab.New({
 	Title = "Teleports"
 })
-
+local MiscSection = Tab.New({
+	Title = "Misc"
+})
 --General
 
 local Fly = GeneralSection.Button({
@@ -584,4 +586,17 @@ local Hiss = TeleportSection.Button({
 		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").GetHissa.ProximityPrompt)
 	
+end})
+
+--Misc
+
+local Power = MiscSection.Button({
+	Text = "B/W Charger",
+	Callback = function()
+		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Green.BackgroundColor3 = Color3.new(0, 0, 0)
+		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Orange.BackgroundColor3 = Color3.new(138, 138, 138)
+		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Red.BackgroundColor3 = Color3.new(255, 255, 255)
+		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BackgroundColor3 = Color3.new(255, 255, 255)
+		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BorderColor3 = Color3.new(0, 0, 0)
+		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BorderSizePixel = 2
 end})
