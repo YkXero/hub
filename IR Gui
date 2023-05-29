@@ -2,13 +2,13 @@
 
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local Tab = Lib.Load({
-	Title = "Xero IR GUI v2",
+	Title = "Xero IR GUI",
 	Style = 3,
 	SizeX = 500,
 	SizeY = 350,
 	Theme = "Dark",
 	ColorOverrides = {
-		MainFrame = Color3.fromRGB(103, 103, 103)
+		MainFrame = Color3.fromRGB(170, 170, 170)
 	}
 })
 
@@ -156,7 +156,7 @@ local Fly = GeneralSection.Button({
 local Reset = GeneralSection.Button({
 	Text = "Reset",
 	Callback = function()
-		game:GetService("Players").LocalPlayer.Character.Head:Destroy()
+	game:GetService("Players").LocalPlayer.Character.Head:Destroy()
 	end,
 	Menu = {
 		Information = function(self)
@@ -169,12 +169,12 @@ local Reset = GeneralSection.Button({
 local DisableTackle = GeneralSection.TextField({
 	Text = "Disable Tackle",
 	Callback = function(User)
-		game:GetService("Workspace"):WaitForChild(User).OldTackle.Disabled = true		
+	game:GetService("Workspace"):WaitForChild(User).OldTackle.Disabled = true		
 end})
 local Charger = GeneralSection.TextField({
 	Text = "Charger",
 	Callback = function(Number)
-		game:GetService("Players").PolillaAtomica1.Data.Power.Value = Number		
+	game:GetService("Players").PolillaAtomica1.Data.Power.Value = Number		
 end})
 
 --AutoFarm
@@ -282,10 +282,10 @@ local IceCream = AutofarmSection.Dropdown({
 			end
 		end
 		if Value == "Stop" then
-			getgenv().Farm = false
+		getgenv().Farm = false
 		end
 		if Value == "Destroy Van" then
-			game:GetService("Workspace").Map.Beach.IceCreamVan:Destroy()
+		game:GetService("Workspace").Map.Beach.IceCreamVan:Destroy()
 		end
 		if Value == "Destroy Beach" then
 			while task.wait(0.0001) do
@@ -311,7 +311,7 @@ local i4v4Farm = AutofarmSection.Dropdown({
 	Text = "4v4 Farm",
 	Callback = function(Value)
 		if Value == "Join 4v4" then
-			game:GetService("TeleportService"):Teleport(9586935578, LocalPlayer)	
+		game:GetService("TeleportService"):Teleport(9586935578, LocalPlayer)	
 		end	
 		if Value == "Start 4v4" then
 			_G.Farm4v4 = true
@@ -330,7 +330,7 @@ local i4v4Farm = AutofarmSection.Dropdown({
 			end   
 		end
 		if Value == "Stop 4v4" then
-			_G.Farm4v4 = false
+		_G.Farm4v4 = false
 		end
 	end,
 	Options = {
@@ -474,7 +474,7 @@ local Dribble = AutofarmSection.Dropdown({
 			end
 		end
 		if Value == "Stop" then
-			_G.DribbleFarm = false
+		_G.DribbleFarm = false
 		end
 	end,
 	Options = {
@@ -521,7 +521,7 @@ local Stamina = AutofarmSection.Dropdown({
 				end
 			end
 			if Value == "Stop" then
-				_G.FarmStamina = false
+			_G.FarmStamina = false
 			end
 		end
 	end,
@@ -575,7 +575,7 @@ local LimitBreaker = TeleportSection.Button({
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-509, 242, -1161)
 		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").LimitBreakerChat.ProximityPrompt)
-
+		
 end})
 local Hiss = TeleportSection.Button({
 	Text = "Hiss",
@@ -583,4 +583,5 @@ local Hiss = TeleportSection.Button({
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-154, 239, 350)
 		task.wait(.3)
 		fireproximityprompt(game:GetService("Workspace").GetHissa.ProximityPrompt)
+	
 end})
