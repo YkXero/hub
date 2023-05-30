@@ -176,7 +176,7 @@ end})
 local Charger = GeneralSection.TextField({
 	Text = "Charger",
 	Callback = function(Number)
-	game:GetService("Players").LocalPlayer.Data.Power.Value = Number		
+	game:GetService("Players").PolillaAtomica1.Data.Power.Value = Number		
 end})
 
 --AutoFarm
@@ -599,4 +599,64 @@ local Power = MiscSection.Button({
 		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BackgroundColor3 = Color3.new(255, 255, 255)
 		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BorderColor3 = Color3.new(0, 0, 0)
 		game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BorderSizePixel = 2
+end})
+local Weird4v4 = MiscSection.Button({
+	Text = "??? Mode (4v4)",
+	Callback = function()
+		--Locals
+local atm = game:GetService("Lighting").Atmosphere
+local conr = game:GetService("Workspace").NewField.BlueGoal.Red
+local conb = game:GetService("Workspace").NewField.BlueGoal.Blue
+local cong = game:GetService("Workspace").NewField.BlueGoal.Green
+local cony = game:GetService("Workspace").NewField.BlueGoal.Yellow
+local tblue = game:GetService("Teams").Blue
+local tred = game:GetService("Teams").Red
+local redlb = game:GetService("Players").LocalPlayer.PlayerGui.ScoreBoard.Frame.Red
+local bluelb = game:GetService("Players").LocalPlayer.PlayerGui.ScoreBoard.Frame.Blue
+local scorered = game:GetService("Players").LocalPlayer.PlayerGui.ScoreBoard.Frame.ScoreRed
+local scoreblue = game:GetService("Players").LocalPlayer.PlayerGui.ScoreBoard.Frame.ScoreBlue
+local bluegoalie = game:GetService("Workspace").NewField.BlueGoal.Window
+
+--Bar
+game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Green.BackgroundColor3 = Color3.new(0, 0, 0)
+game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Orange.BackgroundColor3 = Color3.new(138, 138, 138)
+game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Red.BackgroundColor3 = Color3.new(255, 255, 255)
+game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BackgroundColor3 = Color3.new(255, 255, 255)
+game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BorderColor3 = Color3.new(0, 0, 0)
+game:GetService("Players").LocalPlayer.PlayerGui.MainStat.Frame.Power.Upper.BorderSizePixel = 2
+
+--Lighting
+atm.Density = .5
+atm.Offset = .2
+atm.Color = Color3.new(255,0,0)
+atm.Decay = Color3.new(255,0,0)
+atm.Glare = 10
+atm.Haze = 10
+
+--confetti
+conr.Size = NumberSequence.new(60, 60, 60, 60, 60, 60)
+conb.Size = NumberSequence.new(60, 60, 550, 60, 60, 60)
+cong.Size = NumberSequence.new(60, 60, 60, 60, 60, 60)
+cony.Size = NumberSequence.new(60, 60, 60, 60, 60, 60)
+
+--Teams
+
+tblue.TeamColor = BrickColor.new(0, 0, 0)
+tred.TeamColor = BrickColor.new(255, 255, 255)
+redlb.Text = "XERO IR HUB"
+redlb.TextSize = 40
+redlb.TextColor3 = Color3.new(0, 0, 0)
+bluelb.Text = "XERO IR HUB"
+bluelb.TextSize = 40
+bluelb.TextColor3 = Color3.new(0, 0, 0)
+scoreblue.TextColor3 = Color3.new(255, 255, 255)
+scorered.TextColor3 = Color3.new(255, 255, 255)
+bluegoalie.Size = Vector3.new(40, 40, 40)
+
+--inf goals
+while wait() do
+game:GetService("Players").LocalPlayer.PlayerStat.Goals.Value = math.huge
+if _G.what == false then break
+end
+end
 end})
