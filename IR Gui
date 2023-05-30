@@ -176,7 +176,7 @@ end})
 local Charger = GeneralSection.TextField({
 	Text = "Charger",
 	Callback = function(Number)
-	game:GetService("Players").PolillaAtomica1.Data.Power.Value = Number		
+	game:GetService("Players").LocalPlayer.Data.Power.Value = Number		
 end})
 
 --AutoFarm
