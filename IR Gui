@@ -168,6 +168,35 @@ local Reset = GeneralSection.Button({
 		end
 	}
 })
+local HitboxExpander = GeneralSection.Button({
+	Text = "Hbe",
+	Callback = function()
+	_G.Disabled = true
+		game:GetService('RunService').RenderStepped:connect(function()
+			if _G.Disabled then
+				for i,v in next, game:GetService('Players'):GetPlayers() do
+					if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+						pcall(function()
+							v.Character.Head.face.Texture = ""
+							v.Character.Head.Mesh.MeshType = 1
+							v.Character.Head.Size = Vector3.new(20, 2, 2)
+							v.Character.Head.Transparency = 0.95
+							v.Character.Head.BrickColor = BrickColor.new("Dark red")
+							v.Character.Head = "Neon"
+						end)
+					end
+				end
+			end
+		end)
+	end,
+	Menu = {
+		Information = function(self)
+			Tab.Banner({
+				Text = "yeah"
+			})
+		end
+	}
+})
 local DisableTackle = GeneralSection.TextField({
 	Text = "Disable Tackle",
 	Callback = function(User)
