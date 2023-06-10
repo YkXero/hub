@@ -371,7 +371,7 @@ local i4v4Farm = AutofarmSection.Dropdown({
 					task.wait(.1)
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0, 273, 166)	
 					wait(1)
-					game:GetService("Players").PolillaAtomica1.PlayerGui.buttonofskip.Frame.TextButton.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
+					game:GetService("Players").LocalPlayer.PlayerGui.buttonofskip.Frame.TextButton.Size = UDim2.new(44466666666, 4400 , 445555554444, 100)
 					mouse1click()
 					task.wait()
 					mouse1click()
@@ -385,7 +385,7 @@ local i4v4Farm = AutofarmSection.Dropdown({
 					mouse1click()
 					task.wait()
 					mouse1click()
-					game:GetService("Players").PolillaAtomica1.PlayerGui.buttonofskip.Frame.TextButton.Size = UDim2.new(0.135, 0, 0.033, 0)
+					game:GetService("Players").LocalPlayer.PlayerGui.buttonofskip.Frame.TextButton.Size = UDim2.new(0.135, 0, 0.033, 0)
 					if _G.Farm4v4 == false then break
 					end	
 				end
