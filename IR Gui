@@ -2,7 +2,7 @@
 
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local Tab = Lib.Load({
-	Title = "unfinished ir gui v2",
+	Title = "Xero IR GUI v2",
 	Style = 3,
 	SizeX = 500,
 	SizeY = 350,
@@ -55,7 +55,7 @@ local Fly = GeneralSection.Button({
 		fly.Position = UDim2.new(0.0864197537, 0, 0.266159713, 0)
 		fly.Size = UDim2.new(0, 200, 0, 50)
 		fly.Font = Enum.Font.SourceSans
-		fly.Text = "press here (z to disable)"
+		fly.Text = "Presiona aqui pe"
 		fly.TextColor3 = Color3.fromRGB(0, 0, 0)
 		fly.TextScaled = true
 		fly.TextSize = 14.000
@@ -148,7 +148,7 @@ local Fly = GeneralSection.Button({
 	Menu = {
 		Information = function(self)
 			Tab.Banner({
-				Text = "vuela alto"
+				Text = "vuela alto obinnaxs"
 			})
 		end
 	}
@@ -161,7 +161,7 @@ local Reset = GeneralSection.Button({
 	Menu = {
 		Information = function(self)
 			Tab.Banner({
-				Text = "si."
+				Text = "te muereee :("
 			})
 		end
 	}
@@ -177,7 +177,7 @@ local Charger = GeneralSection.TextField({
 		game:GetService("Players").PolillaAtomica1.Data.Power.Value = Number		
 end})
 local HBE = GeneralSection.Dropdown({
-	Text = "Hitbox Expander (shit one wip")
+	Text = "Hitbox Expander",
 	Callback = function(Value)
 		if Value == "HBE (others)" then
 			_G.Disabled = true
@@ -197,7 +197,7 @@ local HBE = GeneralSection.Dropdown({
 				end
 			end)	
 		end
-		if Value == "HBE (yourself) then
+		if Value == "HBE (yourself, tbh is bad)" then
 			for k,v in next, game:GetService('Players'):GetChildren() do 
 				oghead = v.Character:FindFirstChild('Head')
 				if oghead then 
@@ -212,7 +212,7 @@ local HBE = GeneralSection.Dropdown({
 	end,
 	Options = {
 		"HBE (others)",
-		"HBE (yourself)"
+		"HBE (yourself, tbh is bad)"
 	},
 	Menu = {
 		Information = function(self)
