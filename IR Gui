@@ -558,9 +558,6 @@ local Stamina = AutofarmSection.Dropdown({
 			_G.FarmStamina = true
 			if _G.FarmStamina == true then
 				while true do
-					game.Players.LocalPlayer.Character.Tackle.Disabled = true
-					game:GetService("StarterPlayer").StarterCharacterScripts.Tackle.Disabled = true
-					task.wait()
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-260, 240, 106)
 					task.wait(.1)
 					fireproximityprompt(game:GetService("Workspace").SquatBuyer.ProximityPrompt)
